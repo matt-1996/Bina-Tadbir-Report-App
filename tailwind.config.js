@@ -6,7 +6,19 @@ module.exports = {
       "./resources/**/*.vue",
     ],
     theme: {
-      extend: {},
+
+      extend: {
+        fontFamily: {
+            'IRANSansWeb': ["IRANSansWeb","IRANSansWeb"] // Ensure fonts with spaces have " " surrounding it.
+          },
+      },
+
+      fontFamily: {
+        'IRANSansWeb': ['IRANSansWeb IRANSansWeb'],
+    },
+    direction:{
+        'rtl' : 'rtl',
+    },
     },
     plugins: [],
   }
