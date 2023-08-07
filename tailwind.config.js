@@ -19,6 +19,15 @@ module.exports = {
     direction:{
         'rtl' : 'rtl',
     },
+    keyframes: {
+        moveToRight: {
+          '0%': { opacity: '1' },
+          '100%': {opacity: '0'}
+        },
+      },
+      animation: {
+        moveToRight: 'moveToRight 5s ',
+      },
     },
     plugins: [],
   }
