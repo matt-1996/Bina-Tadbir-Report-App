@@ -1,4 +1,4 @@
-<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<thead class="text-xs text-gray-400 uppercase bg-gray-700 dark:bg-gray-700 dark:text-gray-400">
     <tr>
         {{-- <th scope="col" class="p-4">
             <div class="flex items-center">
@@ -42,16 +42,19 @@
          <th scope="col" class="px-6 py-3 text-base">
             تاریخ گزارش به امور مالیاتی
          </th>
+         <th scope="col" class="px-6 py-3 text-base">
+            عملیات
+         </th>
 
     </tr>
 </thead>
     @foreach ($reports as $report)
-    <tr class="bg-white border-b even:bg-gray-700 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    <tr class="bg-gray-800 border-b border-gray-700 even:bg-gray-700 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600 dark:hover:bg-gray-600">
 
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
             {{$report->userId}}
         </th>
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
         {{$report->agentId}}
         </th>
         <td class="px-6 py-4">
@@ -90,6 +93,18 @@
         </td>
         <td class="px-6 py-4">
             {{$report->sendReportTaxDate}}
+        </td>
+        <td class="px-6 py-4">
+            <span class="text-gray-300 inline-block" onclick="deleteReport({{$report->id}})">
+            {{-- <a href="" > --}}
+                <i class="fas fa-trash text-red-500 p-1 "> </i>
+            {{-- </a> --}}
+            <a href="{{route('report.edit.single', ['id' => $report->id])}}">
+                <i class="fas fa-edit text-gray-500 p-1 "> </i>
+            </a>
+        </span>
+        <span class="text-gray-300 inline-block">
+        </span>
         </td>
         {{-- <td class="px-6 py-4">
             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

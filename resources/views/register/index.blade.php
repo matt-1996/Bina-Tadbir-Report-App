@@ -17,7 +17,7 @@
     <div class="min-h-screen rtl bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
 
 
-<section class="max-w-4xl lg:w-3/4 p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+<section class="max-w-4xl lg:w-3/4 p-6 mx-auto bg-gray-800 rounded-md shadow-md dark:bg-gray-800 mt-20">
     <h1 class="text-xl font-bold text-gray-500 capitalize dark:text-gray-500">ثبت نام جدید</h1>
     <form>
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
