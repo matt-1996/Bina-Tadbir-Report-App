@@ -8,7 +8,7 @@ use App\Http\Controllers\clientController;
 use App\Http\Controllers\reportController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\ticketController;
-
+use App\Http\Controllers\notificationController;
 
 
 /*
@@ -33,6 +33,9 @@ Route::group(['middleware' =>['auth', 'isAdmin']], function(){
 
 Route::group(['middleware' => ['auth']], function(){
 
+    Route::get('auth/getMyId', [LoginController::class, 'getMyId'])->name('getMyId');
+
+    Route::get('notification/get/reportAdded/{userId}', [notificationController::class, 'getNewReports'])->name('notification.get.reports');
 
     Route::get('register' , [registerController::class , 'index'])->name('client.add');
 
@@ -42,11 +45,15 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('client/edit' , [clientController::class , 'edit'])->name('client.edit');
 
+    Route::post('client/update' , [clientController::class , 'update'])->name('client.update');
+
     Route::get('client/profile' , [clientController::class , 'profile'])->name('client.profile');
 
     Route::get('report' , [reportController::class , 'index'])->name('report.index');
 
     Route::get('report/add', [reportController::class , 'add'])->name('report.add');
+
+    Route::get('report/view/single/{id}/{notificationId}', [reportController::class , 'viewSingle'])->name('report.view.single');
 
     Route::get('report/getAgentById/{id}', [reportController::class , 'getAgentById'])->name('getAgentById');
 

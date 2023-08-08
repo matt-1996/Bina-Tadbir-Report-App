@@ -60,7 +60,7 @@
                     <span id="dropdownClients" class="z-10 hidden absolute top-16 right-40 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                           <li>
-                            <a href="{{route('client.index')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a href="{{route('profile.index')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 <i class="fas fa-users p-1 "> </i>
                                  پروفایل</a>
                           </li>
@@ -116,69 +116,53 @@
           <i class="w-8 fas fa-bell p-2 bg-gray-600 text-gray-900 rounded-full">
           </i>
           <span
-            class="absolute right-0 top-0 -mt-2 -mr-1 text-xs bg-red-500 text-white font-medium px-2 shadow-lg rounded-full">3</span>
+            id="notificationCount"
+            class="absolute right-0 top-0 -mt-2 -mr-1 text-xs bg-red-500 text-white font-medium px-2 shadow-lg rounded-full">0</span>
         </span>
             <!-- Notifications !-->
-        <div id="dropdownNotification" class="z-20 h-96 absolute overflow-scroll hidden top-16 left-0 md:left-5 lg:left-5 w-full max-w-sm bg-gray-900 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
-            <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
+        <div id="dropdownNotification" class="z-20 h-96 absolute overflow-scroll hidden top-16 left-0 md:left-5 lg:left-5 w-full max-w-sm divide-y rounded-lg shadow bg-gray-800 dark:bg-gray-800 divide-gray-700 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
+            <div class="block px-4 py-2 font-medium text-center rounded-t-lg bg-gray-800 dark:bg-gray-800 text-white dark:text-white">
                 اعلانات
             </div>
-            <div class="divide-y divide-gray-100 dark:divide-gray-700">
-              <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                <div class="flex-shrink-0">
-                  {{-- <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">
-                  <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-blue-600 border border-white rounded-full dark:border-gray-800">
-                    <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                      <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
-                      <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
-                    </svg>
-                  </div> --}}
-                  <i class="shadow-lg ml-2 shadow-red-400 fas fa-dot-circle font-medium text-red-500 rounded-full">
-                </i>
-                </div>
-                <div class="w-full pl-3">
-                    <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">گزارش جدیدی توسط<span class="font-semibold text-gray-900 dark:text-white">مدیر</span> بازدید انبارگردانی گزارش شد</div>
-                    <div class="text-xs text-blue-600 dark:text-blue-500">3 ساعت پیش</div>
-                </div>
-              </a>
-              <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                <div class="flex-shrink-0">
+            <div id="notificationsList" class="divide-y divide-gray-600 dark:divide-gray-600">
+              {{-- <a href="#" class="flex px-4 py-3 hover:bg-gray-700 dark:hover:bg-gray-700">
+                <div class="flex-shrink-0"> --}}
                   {{-- <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-2.jpg" alt="Joseph image">
                   <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-gray-900 border border-white rounded-full dark:border-gray-800">
                     <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                       <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z"/>
                     </svg>
                   </div> --}}
-                  <i class="shadow-lg ml-2 shadow-green-400 fas fa-dot-circle font-medium text-green-500 rounded-full">
+                  {{-- <i class="shadow-lg ml-2 shadow-green-400 fas fa-dot-circle font-medium text-green-500 rounded-full">
                 </i>
                 </div>
                 <div class="w-full pl-3">
-                    <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span class="font-semibold text-gray-900 dark:text-white">Joseph Mcfall</span> and <span class="font-medium text-gray-900 dark:text-white">5 others</span> started following you.</div>
-                    <div class="text-xs text-blue-600 dark:text-blue-500">10 minutes ago</div>
+                    <div class="text-white text-sm mb-1.5 dark:text-white"><span class="font-semibold text-white dark:text-white">Joseph Mcfall</span> and <span class="font-medium text-white dark:text-white">5 others</span> started following you.</div>
+                    <div class="text-xs text-blue-500 dark:text-blue-500">10 minutes ago</div>
                 </div>
-              </a>
-              <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                <div class="flex-shrink-0">
+              </a> --}}
+              {{-- <a href="#" class="flex px-4 py-3 hover:bg-gray-700 dark:hover:bg-gray-700">
+                <div class="flex-shrink-0"> --}}
                   {{-- <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image">
                   <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-red-600 border border-white rounded-full dark:border-gray-800">
                     <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                       <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z"/>
                     </svg>
                   </div> --}}
-                  <i class="shadow-lg ml-2 shadow-blue-400 fas fa-dot-circle font-medium text-blue-500 rounded-full">
+                  {{-- <i class="shadow-lg ml-2 shadow-blue-400 fas fa-dot-circle font-medium text-blue-500 rounded-full">
                 </i>
                 </div>
                 <div class="w-full pl-3">
-                    <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span class="font-semibold text-gray-900 dark:text-white">Joseph Mcfall</span> and <span class="font-medium text-gray-900 dark:text-white">5 others</span> started following you.</div>
-                    <div class="text-xs text-blue-600 dark:text-blue-500">10 minutes ago</div>
+                    <div class="text-white text-sm mb-1.5 dark:text-white"><span class="font-semibold text-white dark:text-white">Joseph Mcfall</span> and <span class="font-medium text-white dark:text-white">5 others</span> started following you.</div>
+                    <div class="text-xs text-blue-500 dark:text-blue-500">10 minutes ago</div>
                 </div>
-              </a>
+              </a> --}}
             </div>
             <div class="">
 
-                <a href="#" class="block py-3 text-sm font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
+                <a href="#" class="block py-3 text-sm font-medium text-center text-white rounded-b-lg bg-gray-800 hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
                     <div class="inline-flex items-center">
-                        <svg class="w-4 h-4 ml-2 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
+                        <svg class="w-4 h-4 ml-2 text-gray-400 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
                             <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
                         </svg>
                         نمایش همه
@@ -301,6 +285,53 @@
     // user.style.display = 'none';
     // notification.style.display = 'none';
   }
+
+
+
+    $( document ).ready(function() {
+        var userId;
+        $.ajax({url:"{{route('getMyId')}}", async: false, success: function(result){
+
+             userId = result;
+        }
+    });
+        var notificationsList = document.getElementById('notificationsList')
+        var notificationCount = document.getElementById('notificationCount')
+        notificationCount.style.display = 'none'
+        console.log(userId)
+        var url = '{{route("notification.get.reports", "id")}}'
+        url = url.replace('id', userId);
+        $.ajax({url: url, success: function(result){
+            const notifications = result.notifications
+            notifications.forEach(data => {
+            console.log(data.data.data)
+            console.log('new')
+            var NotificationLink = "{{route('report.view.single' , ['id' => 'reportId', 'notificationId' => 'notificationIdData'])}}"
+            var chars = {
+                'reportId' : data.data.reportId,
+                'notificationId' : data.id
+            };
+            NotificationLink = NotificationLink.replace('reportId', data.data.reportId).replace('notificationIdData', data.id)
+            // console.log(NotificationLink)
+            notificationsList.insertAdjacentHTML('afterend', `<a href="${NotificationLink}" id="" class="flex px-4 py-3 hover:bg-gray-700 dark:hover:bg-gray-700">
+                <div class="flex-shrink-0">
+
+                  <i class="shadow-lg ml-2 fas fa-dot-circle font-medium ${data.data.color} rounded-full">
+                </i>
+                </div>
+                <div id="" class="w-full pl-3">
+                    <div id="" class="text-white text-sm mb-1.5 dark:text-white">${data.data.data}</div>
+                    {{-- <div class="text-xs text-blue-500 dark:text-blue-500">3 ساعت پیش</div> --}}
+                </div>
+              </a>`)
+          });
+          if(result.count >= 1){
+            notificationCount.style.display = 'flex'
+            notificationCount.textContent = result.count
+          }
+        }});
+
+    });
 
     </script>
 </html>
