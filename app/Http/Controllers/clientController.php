@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\user;
-
+use Illuminate\Support\Facades\DB;
 class clientController extends Controller
 {
     public function index()
@@ -52,9 +52,25 @@ class clientController extends Controller
         return view('client.edit', compact('user'));
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        // dd($request->all());
 
+        // $client = new user;
+
+        DB::table('users')
+            ->where('id', '=' , $request->id)
+            ->update([
+                'name'        => $request->name,
+                'phone'       => $request->phone,
+                'email'       => $request->email,
+                'isAdmin'     => $request->isAdmin,
+                'city'        => $request->city,
+                'address'     => $request->address,
+                'description' => $request->description
+            ]);
+
+        return redirect()->back()->with('ClientUpdateSuccess', 'رکورد با موفقیت بروزرسانی شد');
     }
 
     public function destroy()
