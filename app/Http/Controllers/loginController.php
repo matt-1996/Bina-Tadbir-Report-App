@@ -63,6 +63,10 @@ class loginController extends Controller
         // }
     }
 
+        function getMyId()
+        {
+            return response()->json(auth()->user()->id);
+        }
 
     function logout()
     {
