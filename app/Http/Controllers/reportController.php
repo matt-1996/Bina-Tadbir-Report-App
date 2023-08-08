@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Hekmatinasser\Verta\Verta;
+use App\Notifications\ReportAdded;
+use App\Notifications\ReportEdited;
+use App\Notifications\ReportDeleted;
 class reportController extends Controller
 {
     public $verta;
@@ -20,9 +23,9 @@ class reportController extends Controller
         $this->verta = new verta;
     }
 
-    public function index()
+    public function index(Verta $verta)
     {
-        $reports = report::where('userId' , $this->getUser('id'))
+        $reports = report::where('month', $verta->month)
         ->orderBy('created_at' , 'desc')
         ->get();
         // dd($reports);
@@ -68,6 +71,17 @@ class reportController extends Controller
         $returnHTML = view('ajaxComponents.reportTable', compact('reports'))->render();
 
        return response()->json(array('success' => true, 'html' => $returnHTML));
+    }
+
+    public function viewSingle($id,$notificationId)
+    {
+        auth()->user()->unreadNotifications->where('id', $notificationId)->markAsRead();
+
+        $report = report::where('id', $id)->first();
+
+            // dd($report);
+
+        return view('report.singleUser', compact('report'));
     }
 
     public function single()
@@ -122,6 +136,12 @@ class reportController extends Controller
 
         $reports->save();
 
+        $lastInsertedId = $reports->id;
+
+        // dd($lastInsertedId);
+
+        User::find($request->CompanyName)->notify(new ReportAdded($lastInsertedId,'text-green-500'));
+
         return redirect()->route('report.add')->with('status' , 'رکورد با موفقیت ثبت شد');
     }
 
@@ -174,6 +194,10 @@ class reportController extends Controller
        $report->year = $verta->year;
        $report->save();
 
+       $lastInsertedId = $report->id;
+
+       User::find($request->name)->notify(new ReportEdited($lastInsertedId,'text-blue-500'));
+
        return redirect()->back()->with('ReportEditSuccess' , 'رکورد با موفقیت بروزرسانی شد');
 
     }
@@ -181,6 +205,8 @@ class reportController extends Controller
     public function destroy($id)
     {
         report::find($id)->delete();
+
+        User::find(auth()->user()->id)->notify(new ReportDeleted('text-red-500'));
 
         return response()->json(array('status' => true));
     }
