@@ -25,9 +25,7 @@ class reportController extends Controller
 
     public function index(Verta $verta)
     {
-        $reports = report::where('month', $verta->month)
-        ->orderBy('created_at' , 'desc')
-        ->get();
+        $reports = report::orderBy('userId' , 'asc')->get();
         // dd($reports);
         return view('report.index', compact('reports'));
     }
@@ -60,10 +58,8 @@ class reportController extends Controller
         {
             $reports = $this->getThisMonthReports();
         }else{
-            $reports = report::where('year' , $verta->year)
-              ->where('month', $verta->month)
-              ->where('userId' , $name)
-              ->orderBy('created_at' , 'desc')
+            $reports = report::where('userId' , $name)
+              ->orderBy('userId' , 'asc')
               ->get();
         }
 
@@ -73,9 +69,9 @@ class reportController extends Controller
        return response()->json(array('success' => true, 'html' => $returnHTML));
     }
 
-    public function viewSingle($id,$notificationId)
+    public function viewSingle($id)
     {
-        auth()->user()->unreadNotifications->where('id', $notificationId)->markAsRead();
+        // auth()->user()->unreadNotifications->where('id', $notificationId)->markAsRead();
 
         $report = report::where('id', $id)->first();
 
@@ -128,11 +124,19 @@ class reportController extends Controller
         ];
 
         $reports->contribution = $contribution;
+        $reports->sendContractDate = $request->sendContractDate;
         $reports->receivedEvidencesDate = $request->receivedEvidenceDate;
         $reports->sendReportClientDate = $request->sentCompanyDate;
         $reports->sendReportTaxDate = $request->sendTaxDate;
         $reports->month             = $verta->month;
         $reports->year              = $verta->year;
+        $reports->knowledgeBase     = $request->knowledgeBase;
+        $reports->revenueTax        = $request->revenueTax;
+        $reports->salaryTax        = $request->salaryTax;
+        $reports->taklifiTax        = $request->taklifiTax;
+        $reports->rentTax        = $request->rentTax;
+        $reports->valueAddedTax        = $request->valueAddedTax;
+        $reports->moreTax        = $request->moreTax;
 
         $reports->save();
 
@@ -140,7 +144,7 @@ class reportController extends Controller
 
         // dd($lastInsertedId);
 
-        User::find($request->CompanyName)->notify(new ReportAdded($lastInsertedId,'text-green-500'));
+        User::find(2)->notify(new ReportAdded($lastInsertedId,'text-green-500','report.view.single'));
 
         return redirect()->route('report.add')->with('status' , 'رکورد با موفقیت ثبت شد');
     }
@@ -148,10 +152,7 @@ class reportController extends Controller
     public function edit()
     {
         $verta = new Verta;
-        $reports = report::where('year' , $verta->year)
-            ->where('month', $verta->month)
-            ->orderBy('created_at' , 'desc')
-            ->get();
+        $reports = report::orderBy('userId' , 'asc')->get();
 
         return view('report.edit', compact('reports'));
     }
@@ -160,43 +161,45 @@ class reportController extends Controller
     {
         $verta = new Verta;
 
-        return report::where('year' , $verta->year)
-        ->where('month', $verta->month)
-        ->orderBy('created_at' , 'desc')
-        ->get();
+        return report::orderBy('userId' , 'asc')->get();
     }
 
     public function update(Request $request, Verta $verta)
     {
         // dd($request->all());
-       $report = new report;
-
-       $report->userId = $request->name;
-       $report->agentId = $request->agent;
-       $report->message = array(
-        'message1' => $request->message1,
-        'message2' => $request->message2,
-        'message3' => $request->message3
-       );
-
-       $report->call = array(
-        'call1' => $request->call1,
-        'call2' => $request->call2,
-        'call3' => $request->call3
-       );
-
-       $report->contribution = $request->contribution;
-
-       $report->receivedEvidencesDate = $request->receivedEvidencesDate;
-       $report->sendReportClientDate = $request->sendReportClientDate;
-       $report->sendReportTaxDate = $request->sendReportTaxDate;
-       $report->month = $verta->month;
-       $report->year = $verta->year;
-       $report->save();
+        $report = report::where('id' , $request->id)->first();
+        // dd($report);
+        $report->update([
+            'agentId' => $request->agent,
+            'message' => [
+            'message1' => $request->message1,
+            'message2' => $request->message2,
+            'message3' => $request->message3
+            ],
+            'call' => [
+                'call1' => $request->call1,
+                'call2' => $request->call2,
+                'call3' => $request->call3
+            ],
+            'contribution'         => $request->contribution,
+            'sendContractDate'     => $request->sendContractDate,
+            'receivedEvidencesDate'=> $request->receivedEvidencesDate,
+            'sendReportClientDate' => $request->sendReportClientDate,
+            'sendReportTaxDate'    => $request->sendReportTaxDate,
+            'knowledgeBase'        => $request->knowledgeBase,
+            'revenueTax'           => $request->revenueTax,
+            'salaryTax'            => $request->salaryTax,
+            'taklifiTax'           => $request->taklifiTax,
+            'rentTax'              => $request->rentTax,
+            'valueAddedTax'        => $request->valueAddedTax,
+            'moreTax'              => $request->moreTax,
+        ]);
 
        $lastInsertedId = $report->id;
 
-       User::find($request->name)->notify(new ReportEdited($lastInsertedId,'text-blue-500'));
+    //    dd($report);
+
+       User::find(2)->notify(new ReportEdited($lastInsertedId,'text-blue-500', 'report.view.single'));
 
        return redirect()->back()->with('ReportEditSuccess' , 'رکورد با موفقیت بروزرسانی شد');
 

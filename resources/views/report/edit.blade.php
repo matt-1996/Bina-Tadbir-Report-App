@@ -18,7 +18,7 @@
     <div class="py-10 md:py-5 lg:py-5"></div>
 <div class="min-h-screen rtl  bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
     <div class="grid grid-cols-1 px-5 my-24 md:my-2 lg:my-2 gap-6 mt-4 sm:grid-cols-1">
-        <div class="relative  overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="pb-4 p-4 bg-gray-900 dark:bg-gray-900">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative mt-1">
@@ -46,6 +46,9 @@
                     نماینده شرکت
                 </th>
                 <th scope="col" class="px-6 py-3 text-base">
+                     نوع دانش بنیان
+                </th>
+                <th scope="col" class="px-6 py-3 text-base">
                    تاریخ پیامک اول
                 </th>
                 <th scope="col" class="px-6 py-3 text-base">
@@ -67,6 +70,9 @@
                     همکاری/فسخ
                 </th>
                 <th scope="col" class="px-6 py-3 text-base">
+                    تاریخ ارسال قرارداد
+                </th>
+                <th scope="col" class="px-6 py-3 text-base">
                    تاریخ دریافت مدارک
                 </th>
                 <th scope="col" class="px-6 py-3 text-base">
@@ -76,9 +82,27 @@
                     تاریخ گزارش به امور مالیاتی
                  </th>
                  <th scope="col" class="px-6 py-3 text-base">
-                    عملیات
-                 </th>
+                     مالیات عملکرد
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-base">
+                        مالیات حقوق
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-base">
+                        مالیات تکلیفی
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-base">
+                        مالیات اجاره
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-base">
+                        مالیات بر ارزش افزوده
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-base">
+                        سایر مالیات
+                    </th>
 
+                    <th scope="col" class="px-8 py-3 text-base">
+                       عملیات
+                    </th>
             </tr>
         </thead>
         <tbody>
@@ -91,6 +115,9 @@
                 <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
                 {{$report->agentId}}
                 </th>
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
+                    {{$report->knowledgeBase}}
+                    </th>
                 <td class="px-6 py-4">
                     {{$report->message['message1']}}
                 </td>
@@ -120,6 +147,9 @@
                 </td>
                 @endif
                 <td class="px-6 py-4">
+                    {{$report->sendContractDate}}
+                </td>
+                <td class="px-6 py-4">
                    {{$report->receivedEvidencesDate}}
                 </td>
                 <td class="px-6 py-4">
@@ -127,6 +157,24 @@
                 </td>
                 <td class="px-6 py-4">
                     {{$report->sendReportTaxDate}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->revenueTax,0,'.',',')}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->salaryTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->taklifiTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->rentTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->valueAddedTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->moreTax)}}
                 </td>
                 <td class="px-6 py-4">
                     <span class="text-gray-300 inline-block" onclick="deleteReport({{$report->id}})">

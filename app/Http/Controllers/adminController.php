@@ -11,9 +11,7 @@ class adminController extends Controller
     public function index(Request $request)
     {
         $verta = new Verta;
-        $reports = report::where('month' , '=', $verta->month)
-                    ->orderBy('created_at' , 'desc')
-                    ->get();
+        $reports = report::orderBy('userId' , 'asc')->get();
 
         return view('admin.dashboard', compact('reports'));
     }

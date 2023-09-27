@@ -20,7 +20,15 @@ class report extends Model
         'sendReportClientDate',
         'sendReportTaxDate',
         'month',
-        'year'
+        'sendContractDate',
+        'year',
+        'knowledgeBase',
+        'revenueTax',
+        'salaryTax',
+        'taklifiTax',
+        'rentTax',
+        'valueAddedTax',
+        'moreTax'
     ];
 
     protected $casts = [

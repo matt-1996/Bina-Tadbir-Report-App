@@ -30,6 +30,12 @@
                         <input id="name"  type="text" disabled value="{{$report->agentId}}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                     <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="companyName"> نوع دانش بنیان</label>
+                        <select name="knowledgeBase" id="knowledgeBase"  class=" block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" >
+                            <option disabled value="{{$report->knowledgeBase}}" selected class="text-gray-800">{{$report->knowledgeBase}}</option>
+                        </select>
+                    </div>
+                    <div>
                         <label class="text-gray-500 dark:text-gray-200" for="username"> تاریخ پیامک اول </label>
                         <input id="name"  type="text" disabled value="{{$report->message['message1']}}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
@@ -75,6 +81,30 @@
                     <div>
                         <label class="text-gray-500 dark:text-gray-200" for="username"> تاریخ ارسال گزارش به اداره مالیات </label>
                         <input id="name"  type="text" disabled value="{{$report->sendReportTaxDate}}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات عملکرد</label>
+                        <input id="revenueTax" disabled name="revenueTax" value="{{$report->revenueTax}}"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات حقوق</label>
+                        <input id="salaryTax" disabled name="salaryTax" value="{{$report->salaryTax}}"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات تکلیفی</label>
+                        <input id="taklifiTax" disabled name="taklifiTax" value="{{$report->taklifiTax}}"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات اجاره</label>
+                        <input id="rentTax" disabled name="rentTax" value="{{$report->rentTax}}" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات بر ارزش افزوده</label>
+                        <input id="valueAddedTax" disabled name="valueAddedTax" value="{{$report->valueAddedTax}}" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">سایر مالیات  </label>
+                        <input id="moreTax" disabled name="moreTax" value="{{$report->moreTax}}" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
 
                     <div>

@@ -14,10 +14,11 @@ class ReportEdited extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($id,$color)
+    public function __construct($id,$color,$route)
     {
         $this->reportId = $id;
         $this->color = $color;
+        $this->route = $route;
     }
 
     /**
@@ -51,7 +52,8 @@ class ReportEdited extends Notification
         return [
             'data' =>' گزارش جدیدی توسط مدیر ویرایش شد',
             'color' => $this->color,
-            'reportId' => $this->reportId
+            'dataId' => $this->reportId,
+            'route'    => $this->route
         ];
     }
 }

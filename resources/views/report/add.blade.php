@@ -51,35 +51,51 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div>
                         <label class="text-gray-500 dark:text-gray-200" for="agent">نماینده شرکت </label>
                         <input id="agent" name="agent" type="text" class=" block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
 
                     </div>
                     <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="KnowledgeBase"> نوع دانش بنیان</label>
+                        <select name="knowledgeBase" id="knowledgeBase"  class=" block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" >
+                            <option value="1" class="text-gray-800">1</option>
+                            <option value="2" class="text-gray-800">2</option>
+                            <option value="ندارد" class="text-gray-800">ندارد</option>
+
+                        </select>
+                    </div>
+                    <div></div>
+                    <div>
                         <label class="text-gray-500 dark:text-gray-200" for="messageDate"> تاریخ پیامک </label>
                         <label class="text-gray-500 dark:text-gray-200" for="messageDate"> اول  </label>
                         <input id="messageDate" name="messageDate1" type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <label class="text-gray-500 dark:text-gray-200" for="messageDate"> دوم  </label>
+                        <label class="text-gray-500 dark:text-gray-200" for="messageDate"> تاریخ پیامک  دوم  </label>
                         <input id="messageDate" name="messageDate2" type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <label class="text-gray-500 dark:text-gray-200" for="messageDate"> سوم  </label>
+                        <label class="text-gray-500 dark:text-gray-200" for="messageDate">تاریخ پیامک  سوم  </label>
                         <input id="messageDate" name="messageDate3" type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                     <div>
                         <label class="text-gray-500 dark:text-gray-200" for="messageDate"> تاریخ تماس تلفنی </label>
-                        <label class="text-gray-500 dark:text-gray-200" for="messageDate"> اول  </label>
+                        <label class="text-gray-500 dark:text-gray-200" for="messageDate">تاریخ تماس تلفنی  اول  </label>
                         <input id="messageDate" name="callDate1" type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <label class="text-gray-500 dark:text-gray-200" for="messageDate"> دوم  </label>
+                        <label class="text-gray-500 dark:text-gray-200" for="messageDate">تاریخ تماس تلفنی  دوم  </label>
                         <input id="messageDate" name="callDate2" type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <label class="text-gray-500 dark:text-gray-200" for="messageDate"> سوم  </label>
+                        <label class="text-gray-500 dark:text-gray-200" for="messageDate">تاریخ تماس تلفنی  سوم  </label>
                         <input id="messageDate" name="callDate3" type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
+                    {{-- <div class="border-b-2 border-white w-3/4"></div> --}}
                     <div>
                         <label class="text-gray-500 dark:text-gray-200" for="passwordConfirmation"> همکاری/فسخ</label>
                     <select name="contribution" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                         <option value="Contribute" selected>همکاری</option>
                         <option value="Cancel">فسخ</option>
                     </select>
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="username"> تاریخ ارسال قرارداد </label>
+                        <input id="messageDate" name="sendContractDate" value="" type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                     <div>
                         <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">تاریخ دریافت مدارک</label>
@@ -97,6 +113,30 @@
                     <div>
                         <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">تاریخ ارسال گزارش به سازمان امور مالیاتی</label>
                         <input id="messageDate" name="sendTaxDate"  type="text" class="messageDate block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات عملکرد</label>
+                        <input id="revenueTax" name="revenueTax"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات حقوق</label>
+                        <input id="salaryTax" name="salaryTax"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات تکلیفی</label>
+                        <input id="taklifiTax" name="taklifiTax"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات اجاره</label>
+                        <input id="rentTax" name="rentTax"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">مالیات بر ارزش افزوده</label>
+                        <input id="valueAddedTax" name="valueAddedTax"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                        <label class="text-gray-500 dark:text-gray-200" for="receivedEvidenceDate">سایر مالیات  </label>
+                        <input id="moreTax" name="moreTax"  type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                 </div>
                 <div class="flex justify-end mt-6">

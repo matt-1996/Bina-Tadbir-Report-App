@@ -11,7 +11,7 @@
 <body dir="rtl">
     @yield('header')
 <!--horizontal navigations-->
-<div class="p-1 z-50 fixed w-full pb-0 mx-auto flex flex-wrap " onclick="hideAll()">
+<div class="p-1 z-50 absolute w-full pb-0 mx-auto flex flex-wrap " onclick="hideAll()">
     <div class="py-1 w-full lg:w-full ">
       <!--dark mode - text and icons-->
       <div class=" p-2 py-4 text-gray-700 bg-gray-900 rounded-lg shadow-lg font-medium capitalize">
@@ -177,7 +177,7 @@
 
 
           <span
-            class="absolute right-0 top-0 -mt-1 -mr-1 text-xs bg-yellow-500 text-black font-medium px-2 rounded-full">3</span>
+            class="absolute right-0 top-0 -mt-1 -mr-1 text-xs bg-yellow-500 text-black font-medium px-2 rounded-full"></span>
         </span>
 
     </div>
@@ -195,6 +195,10 @@
           <a href="{{route('ticket.new')}}" class="text-gray-300 bg-gray-900 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
             <i class="fas fa-ticket-alt p-2 "></i>
             ارسال تیکت</a>
+
+            <a href="{{route('ticket.index')}}" class="text-gray-300 bg-gray-900 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                <i class="fas fa-comments p-2 "></i>
+             تیکت ها</a>
 
           <a href="{{route('report.index')}}" class="text-gray-300 bg-gray-900 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
             <i class="fas fa-chart-bar p-2 "></i>
@@ -298,20 +302,26 @@
         var notificationsList = document.getElementById('notificationsList')
         var notificationCount = document.getElementById('notificationCount')
         notificationCount.style.display = 'none'
-        console.log(userId)
+        // console.log(userId)
         var url = '{{route("notification.get.reports", "id")}}'
         url = url.replace('id', userId);
         $.ajax({url: url, success: function(result){
             const notifications = result.notifications
             notifications.forEach(data => {
-            console.log(data.data.data)
-            console.log('new')
-            var NotificationLink = "{{route('report.view.single' , ['id' => 'reportId', 'notificationId' => 'notificationIdData'])}}"
-            var chars = {
-                'reportId' : data.data.reportId,
-                'notificationId' : data.id
-            };
-            NotificationLink = NotificationLink.replace('reportId', data.data.reportId).replace('notificationIdData', data.id)
+                let sortable = [];
+                for (var sortData in data) {
+                    sortable.push([sortData, data[sortData]]);
+                }
+
+                sortable.sort(function(a, b) {
+                    return a[1] - b[1];
+                });
+                // data.data = sortable
+            console.log(sortable)
+            var NotificationLink = "{{route('notifications' , ['id' => 'reportId', 'notificationId' => 'notificationIdData', 'route' => 'notificationsRoute'])}}"
+            NotificationLink = NotificationLink.replace('reportId', data.data.dataId)
+            .replace('notificationIdData', data.id)
+            .replace('notificationsRoute', data.data.route)
             // console.log(NotificationLink)
             notificationsList.insertAdjacentHTML('afterend', `<a href="${NotificationLink}" id="" class="flex px-4 py-3 hover:bg-gray-700 dark:hover:bg-gray-700">
                 <div class="flex-shrink-0">

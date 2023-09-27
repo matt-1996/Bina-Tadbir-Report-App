@@ -23,7 +23,7 @@
             <div>
                 <h1 class="text-2xl font-bold text-gray-800 my-2 ">
                     <span class="border-r-4 ml-2 border-gray-900"></span>
-                    گزارشات ۳۰ روز اخیر
+                    گزارشات
 
                 </h1>
             </div>
@@ -42,6 +42,9 @@
                 <th scope="col" class="px-6 py-3 text-base">
                     نماینده شرکت
                 </th>
+                <th scope="col" class="px-6 py-3 text-base">
+                    نوع دانش بنیان
+               </th>
                 <th scope="col" class="px-6 py-3 text-base">
                    تاریخ پیامک اول
                 </th>
@@ -64,6 +67,9 @@
                     همکاری/فسخ
                 </th>
                 <th scope="col" class="px-6 py-3 text-base">
+                    تاریخ ارسال قرارداد
+                </th>
+                <th scope="col" class="px-6 py-3 text-base">
                    تاریخ دریافت مدارک
                 </th>
                 <th scope="col" class="px-6 py-3 text-base">
@@ -72,6 +78,25 @@
                  <th scope="col" class="px-6 py-3 text-base">
                     تاریخ گزارش به امور مالیاتی
                  </th>
+                 <th scope="col" class="px-6 py-3 text-base">
+                    مالیات عملکرد
+                   </th>
+                   <th scope="col" class="px-6 py-3 text-base">
+                       مالیات حقوق
+                   </th>
+                   <th scope="col" class="px-6 py-3 text-base">
+                       مالیات تکلیفی
+                   </th>
+                   <th scope="col" class="px-6 py-3 text-base">
+                       مالیات اجاره
+                   </th>
+                   <th scope="col" class="px-6 py-3 text-base">
+                       مالیات بر ارزش افزوده
+                   </th>
+                   <th scope="col" class="px-6 py-3 text-base">
+                       سایر مالیات
+                   </th>
+
 
             </tr>
         </thead>
@@ -87,6 +112,9 @@
                 <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
                 {{$report->agentId}}
                 </th>
+                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
+                    {{$report->knowledgeBase}}
+                    </th>
                 <td class="px-6 py-4">
                     {{$report->message['message1']}}
                 </td>
@@ -116,6 +144,9 @@
                 </td>
                 @endif
                 <td class="px-6 py-4">
+                    {{$report->sendContractDate}}
+                </td>
+                <td class="px-6 py-4">
                    {{$report->receivedEvidencesDate}}
                 </td>
                 <td class="px-6 py-4">
@@ -123,6 +154,24 @@
                 </td>
                 <td class="px-6 py-4">
                     {{$report->sendReportTaxDate}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->revenueTax,0,'.',',')}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->salaryTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->taklifiTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->rentTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->valueAddedTax)}}
+                </td>
+                <td class="px-6 py-4">
+                    {{number_format($report->moreTax)}}
                 </td>
                 {{-- <td class="px-6 py-4">
                     <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

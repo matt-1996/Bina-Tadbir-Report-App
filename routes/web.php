@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('report/add', [reportController::class , 'add'])->name('report.add');
 
-    Route::get('report/view/single/{id}/{notificationId}', [reportController::class , 'viewSingle'])->name('report.view.single');
+    Route::get('report/view/single/{id}', [reportController::class , 'viewSingle'])->name('report.view.single');
 
     Route::get('report/getAgentById/{id}', [reportController::class , 'getAgentById'])->name('getAgentById');
 
@@ -79,14 +79,21 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('ticket' , [ticketController::class , 'index'])->name('ticket.index');
 
-    Route::get('ticket/single' , [ticketController::class , 'single'])->name('ticket.single');
+    Route::get('ticket/single/{id}' , [ticketController::class , 'single'])->name('ticket.single');
 
     Route::get('ticket/new' , [ticketController::class , 'new'])->name('ticket.new');
+
+    Route::post('ticket/reply/new' , [ticketController::class , 'newReply'])->name('ticket.reply.new');
+
+    Route::post('ticket/add', [ticketController::class , 'add'])->name('ticket.add');
+
+    Route::get('notifications', [notificationController::class,'handleNotification'])->name('notifications');
 
     route::get('logout' , [loginController::class , 'logout'])->name('logout');
 });
 
 
+route::get('hash/{keyword}', [loginController::class , 'hash'])->name('hash');
 
 
 

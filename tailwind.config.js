@@ -24,9 +24,27 @@ module.exports = {
           '0%': { opacity: '1' },
           '100%': {opacity: '0'}
         },
+        typing: {
+            "0%": {
+              width: "0%",
+              visibility: "hidden"
+            },
+            "100%": {
+              width: "100%"
+            }
+          },
+          blink: {
+            "50%": {
+              borderColor: "transparent"
+            },
+            "100%": {
+              borderColor: "white"
+            }
+          }
       },
       animation: {
         moveToRight: 'moveToRight 5s ',
+        typing: "typing 2s steps(20) alternate, blink .7s infinite"
       },
     },
     plugins: [],

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\user;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class loginController extends Controller
 {
@@ -74,5 +75,10 @@ class loginController extends Controller
 
         Auth::logout();
         return redirect()->route('root');
+    }
+
+    function hash($keword)
+    {
+        dd(Hash::make($keword));
     }
 }

@@ -7,18 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ReportAdded extends Notification
+class newReplyNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($dataId,$color,$route)
+    public function __construct($id,$color,$route)
     {
-        $this->reportId = $dataId;
-        $this->color = $color;
-        $this->route = $route;
+        $this->dataId = $id;
+        $this->color  =  $color;
+        $this->route  = $route;
     }
 
     /**
@@ -50,10 +50,10 @@ class ReportAdded extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'data' =>' گزارش جدیدی توسط مدیر ایجاد شد',
+            'data'  => 'پیام جدیدی دارید',
             'color' => $this->color,
-            'dataId' => $this->reportId,
-            'route'    => $this->route
+            'route' => $this->route,
+            'dataId'=> $this->dataId,
         ];
     }
 }
