@@ -1,7 +1,7 @@
 version: "3.8"
 services:
-  blog_app:
-    container_name: blog_app
+  report_app:
+    container_name: report_app
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
@@ -11,12 +11,12 @@ services:
       - .:/usr/src/app
       - ./public:/usr/src/app/public
     depends_on:
-      - blog_db
+      - report_db
     networks:
       - app_network
 
-  blog_nginx:
-    container_name: blog_nginx
+  report_nginx:
+    container_name: report_nginx
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
@@ -25,15 +25,15 @@ services:
     ports:
       - 80:80
     depends_on:
-      - blog_app
+      - report_app
     environment:
-      NGINX_FPM_HOST: blog_app
+      NGINX_FPM_HOST: report_app
       NGINX_ROOT: /usr/src/app/public
     networks:
       - app_network
 
-  blog_db:
-    container_name: blog_db
+  report_db:
+    container_name: report_db
     image: mysql:8.0.20
     restart: always
     volumes:
@@ -44,23 +44,23 @@ services:
     cap_add:
       - SYS_NICE
     environment:
-      MYSQL_DATABASE: blog
+      MYSQL_DATABASE: report
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     networks:
       - app_network
 
-  blog_redis:
-    container_name: blog_redis
+  report_redis:
+    container_name: report_redis
     image: redis:latest
     ports:
       - 6379:6379
     networks:
       - app_network
 
-  # blog_node:
-  #   container_name: blog_node
+  # report_node:
+  #   container_name: report_node
   #   build:
   #     dockerfile: ./docker/node/Dockerfile
   #   ports:
